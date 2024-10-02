@@ -1,59 +1,29 @@
-# Ansible Role: ansible-role-k8s-homelab-setup 🏡
+# my-ansible-k3s-homelab 🏡
 
-An Ansible role to set up a Kubernetes homelab environment on an Ubuntu server. This role deploys and configures a Kubernetes cluster in either standalone or high-availability mode. It also deploys ArgoCD, a monitoring solution with graph visualizations, alerts to Slack when issues arise, and allows you to deploy a list of apps with their configurations.
+An Ansible playbook to set up HA k8s cluster with k3s, kube-vip, MetalLB, ArgoCD via ansible within my homelab.
 
 ## Requirements 📋
 
-- Ubuntu Server 18.04+ or Ubuntu-based distribution.
-- Ansible 2.9+ installed on the control machine.
-- SSH access to the target server.
+- Ansible 2.9+ installed on the control machine
+- SSH access to the target servers
+- x1 Master Server running Ubuntu Server LTS 18.04+
+- x1 Agent Server running Ubuntu Server LTS 18.04+
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed on the control machine.
 - A Slack workspace for receiving alerts (optional).
 
-## Role Variables 🎛️
+## Tooling 🧩
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
-
-```yaml
-k8s_deploy_mode: "standalone" # "standalone" or "ha" for high availability
-k8s_apps: [] # A list of apps to deploy with their configurations
-argo_cd_version: "v2.2.2"
-monitoring_solution: "prometheus"
-alert_manager_slack_webhook_url: ""
-cloudflare_api_key: ""
-cloudflare_email: ""
-```
-
-## Dependencies 🧩
-
-None.
-
-## Example Playbook 📘
-
-```yaml
-- hosts: k8s-homelab
-  roles:
-    - role: ansible-role-k8s-homelab-setup
-      k8s_deploy_mode: "standalone"
-      k8s_apps:
-        - name: "home-assistant"
-          config: "/path/to/home-assistant/config.yaml"
-      cloudflare_api_key: "your_cloudflare_api_key"
-      cloudflare_email: "your_email@example.com"
-      alert_manager_slack_webhook_url: "https://hooks.slack.com/services/XXXX/YYYY/ZZZZ"
-```
+- Kube-vip:
+- MetalLB: 
+- Argo: App deployment
 
 ## Adding Apps 🚀
 
-To add apps to your Kubernetes homelab environment, add them to the `k8s_apps` variable in your playbook:
+....
 
-```yaml
-k8s_apps:
-  - name: "app-name"
-    config: "/path/to/app-config.yaml"
-```
+## Making changes 🧪
 
-## Molecule Testing 🧪
+### Testing roles
 
 To run Molecule tests, first, install Molecule and its dependencies:
 
@@ -87,8 +57,8 @@ We greatly appreciate any contributions to this project. Your help and expertise
 
 4. **Share your experiences**: If you use this Ansible role in your project, share your experiences, challenges, and solutions with the community. Your feedback can provide valuable insights and help others succeed with their projects.
 
-Thank you for considering a contribution to the `ansible-role-setup-home-lab` project!
+Thank you for considering a contribution to the `my-ansible-k3s-homelab` project!
 
 ## Buy Me a Coffee ☕
 
-If you find this project helpful and want to support its development, consider [buying me a coffee](https://www.buymeacoffee.com/your_username) to show your appreciation. Your support is greatly appreciated! 😊
+If you find this project helpful and want to support its development, consider [buying me a coffee](https://www.buymeacoffee.com/zifamathebula) to show your appreciation. Your support is greatly appreciated! 😊
